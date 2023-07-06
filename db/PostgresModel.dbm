@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.4" use-changelog="false" last-position="195,158" last-zoom="0.8" max-obj-count="9"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<database name="new_database" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layers="0" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="user" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="680" y="820"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="20"/>
+	</column>
+	<column name="username" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="email" not-null="true">
+		<type name="varchar" length="70"/>
+	</column>
+	<column name="password" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<constraint name="user_pk" type="pk-constr" table="public.&quot;user&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_rol_user" index="4"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="rol_user_fk" index="1"/>
+		<object name="user_uq" index="2"/>
+	</customidxs>
+</table>
+
+<table name="item" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="680" y="420"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="title" not-null="true">
+		<type name="varchar" length="40"/>
+	</column>
+	<column name="release_date">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="created_at" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="item_pk" type="pk-constr" table="public.item">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_type_item" index="6"/>
+		<object name="id_user" index="5"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="type_item_fk" index="1"/>
+		<object name="user_fk" index="0"/>
+	</customidxs>
+</table>
+
+<table name="opinion" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="980" y="200"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="info" not-null="true">
+		<type name="varchar" length="150"/>
+	</column>
+	<column name="rating" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="opinion_pk" type="pk-constr" table="public.opinion">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="rol_user" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1100" y="800"/>
+	<column name="id" not-null="true">
+		<type name="smallserial" length="0"/>
+	</column>
+	<column name="rol" not-null="true">
+		<type name="varchar" length="10"/>
+	</column>
+	<constraint name="type_user_pk" type="pk-constr" table="public.rol_user">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="type_item" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1100" y="500"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="type" not-null="true">
+		<type name="varchar" length="40"/>
+	</column>
+	<constraint name="type_item_pk" type="pk-constr" table="public.type_item">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="description" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="360" y="240"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="description" not-null="true">
+		<type name="varchar" length="150"/>
+	</column>
+	<constraint name="description_pk" type="pk-constr" table="public.description">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="item_has_many_opinion" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#97b0d4"
+	 src-table="public.item"
+	 dst-table="public.opinion"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="30.4451" y="-37.8566"/>
+	</label>
+</relationship>
+
+<relationship name="user_has_many_item" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#f02480"
+	 src-table="public.&quot;user&quot;"
+	 dst-table="public.item"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-13.6087" y="-18.7323"/>
+	</label>
+</relationship>
+
+<relationship name="type_item_has_many_item" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#b2db3b"
+	 src-table="public.type_item"
+	 dst-table="public.item"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="user_has_one_rol_user" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#2bf420"
+	 src-table="public.rol_user"
+	 dst-table="public.&quot;user&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="2.86231" y="-29.1848"/>
+	</label>
+</relationship>
+
+<relationship name="item_has_one_description" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#42a96b"
+	 src-table="public.description"
+	 dst-table="public.item"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-16.5187" y="-33.0859"/>
+	</label>
+</relationship>
+
+<table name="item_genre" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="280" y="540"/>
+</table>
+
+<relationship name="item_has_many_item_genre" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#ef46e0"
+	 src-table="public.item"
+	 dst-table="public.item_genre"
+	 src-required="false" dst-required="false">
+	<special-pk-cols indexes="0"/>
+</relationship>
+
+<table name="genre" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="260" y="840"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="40"/>
+	</column>
+	<constraint name="genre_pk" type="pk-constr" table="public.genre">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="genre_has_many_item_genre" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#9cfc51"
+	 src-table="public.genre"
+	 dst-table="public.item_genre"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="8.20656" y="-43.9323"/>
+	</label>
+	<constraint name="item_genre_pk" type="pk-constr" alias="item_genre_pk" protected="true" table="public.item_genre">
+		</constraint>
+	<special-pk-cols indexes="0"/>
+</relationship>
+
+</dbmodel>

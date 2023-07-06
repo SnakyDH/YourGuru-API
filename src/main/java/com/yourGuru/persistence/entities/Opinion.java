@@ -2,6 +2,8 @@ package com.yourGuru.persistence.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Opinion {
@@ -9,7 +11,9 @@ public class Opinion {
     private Integer id;
     private String info;
     private Integer rating;
-    @Column(name = "id_item")
+    @ManyToOne
+    @JoinColumn(name="id_item", insertable = false, updatable = false)
+    private Item item;
     private Integer idItem;
     public Integer getId() {
         return id;

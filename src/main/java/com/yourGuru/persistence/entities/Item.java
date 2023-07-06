@@ -1,10 +1,9 @@
 package com.yourGuru.persistence.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Item {
@@ -17,11 +16,16 @@ public class Item {
     private LocalDateTime createdAt;
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
-    @Column(name="id_user")
-    private Integer idUser;
-    @Column(name="id_type_itemr")
-    private Integer idType;
+    @ManyToOne
+    @JoinColumn(name = "id_user", insertable = false, updatable = false)
+    private User user;
+    @ManyToOne
+    @JoinColumn(name="id_type_item", insertable = false, updatable = false)
+    private Type type;
     @Column(name="id_description")
     private Integer idDescription;
-
+    @OneToMany(mappedBy = "item")
+    private List<Opinion> opinions;
+    @OneToMany(mappedBy = "genre")
+    private List<ItemGenre> genres;
 }

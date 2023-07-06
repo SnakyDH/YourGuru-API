@@ -1,8 +1,8 @@
 package com.yourGuru.persistence.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class User {
@@ -12,8 +12,11 @@ public class User {
     private String userName;
     private String email;
     private String password;
-    @Column(name = "id_rol_user")
-    private Integer idRol;
+    @OneToOne
+    @JoinColumn(name = "id_rol_user", insertable = false, updatable = false)
+    private Rol rol;
+    @OneToMany(mappedBy = "user")
+    private List<Item> items;
 
     public Integer getId() {
         return id;
@@ -47,11 +50,11 @@ public class User {
         this.password = password;
     }
 
-    public Integer getIdRol() {
-        return idRol;
+    public Rol getRol() {
+        return rol;
     }
 
-    public void setIdRol(Integer idRol) {
-        this.idRol = idRol;
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 }
