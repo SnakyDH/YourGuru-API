@@ -1,4 +1,4 @@
-package com.yourGuru.persistence.entities;
+package com.yourGuru.infrastructure.persistence.entities;
 
 import jakarta.persistence.*;
 
@@ -6,13 +6,13 @@ import java.util.List;
 
 @Entity
 @Table(name = "type_item")
-public class Type {
+public class TypeEntity {
     @Id
     private Integer id;
     @Column(name = "type")
     private String name;
     @OneToMany(mappedBy = "type")
-    private List<Item> items;
+    private List<ItemEntity> items;
     public Integer getId() {
         return id;
     }

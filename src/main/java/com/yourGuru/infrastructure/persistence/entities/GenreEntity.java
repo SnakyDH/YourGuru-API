@@ -1,4 +1,4 @@
-package com.yourGuru.persistence.entities;
+package com.yourGuru.infrastructure.persistence.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -7,12 +7,12 @@ import jakarta.persistence.OneToMany;
 import java.util.List;
 
 @Entity
-public class Genre {
+public class GenreEntity {
     @Id
     private Integer id;
     private String name;
     @OneToMany(mappedBy = "item")
-    private List<ItemGenre> items;
+    private List<ItemGenreEntity> items;
     public Integer getId() {
         return id;
     }

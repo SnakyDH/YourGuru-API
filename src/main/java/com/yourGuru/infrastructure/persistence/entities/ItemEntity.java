@@ -1,4 +1,4 @@
-package com.yourGuru.persistence.entities;
+package com.yourGuru.infrastructure.persistence.entities;
 
 import jakarta.persistence.*;
 
@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-public class Item {
+public class ItemEntity {
     @Id
     private Integer id;
     private String title;
@@ -18,14 +18,14 @@ public class Item {
     private LocalDateTime updatedAt;
     @ManyToOne
     @JoinColumn(name = "id_user", insertable = false, updatable = false)
-    private User user;
+    private UserEntity user;
     @ManyToOne
     @JoinColumn(name="id_type_item", insertable = false, updatable = false)
-    private Type type;
+    private TypeEntity type;
     @Column(name="id_description")
     private Integer idDescription;
     @OneToMany(mappedBy = "item")
-    private List<Opinion> opinions;
+    private List<OpinionEntity> opinions;
     @OneToMany(mappedBy = "genre")
-    private List<ItemGenre> genres;
+    private List<ItemGenreEntity> genres;
 }

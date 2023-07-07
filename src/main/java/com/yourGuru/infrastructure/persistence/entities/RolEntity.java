@@ -1,8 +1,8 @@
-package com.yourGuru.persistence.entities;
+package com.yourGuru.infrastructure.persistence.entities;
 
 import jakarta.persistence.Id;
 
-public class Rol {
+public class RolEntity {
     @Id
     private Integer id;
     private String rol;

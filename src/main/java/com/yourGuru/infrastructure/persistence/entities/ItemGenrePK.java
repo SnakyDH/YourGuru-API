@@ -1,4 +1,4 @@
-package com.yourGuru.persistence.entities;
+package com.yourGuru.infrastructure.persistence.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

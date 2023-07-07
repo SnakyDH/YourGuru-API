@@ -1,18 +1,18 @@
-package com.yourGuru.persistence.entities;
+package com.yourGuru.infrastructure.persistence.entities;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "item_genre")
-public class ItemGenre {
+public class ItemGenreEntity {
     @EmbeddedId
     private ItemGenrePK id;
     @ManyToOne
     @JoinColumn(name = "id_item", insertable = false, updatable = false)
-    private Item item;
+    private ItemEntity item;
     @ManyToOne
     @JoinColumn(name = "id_genre", insertable = false,updatable = false)
-    private Genre genre;
+    private GenreEntity genre;
     public ItemGenrePK getId() {
         return id;
     }

@@ -1,11 +1,11 @@
-package com.yourGuru.persistence.entities;
+package com.yourGuru.infrastructure.persistence.entities;
 
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
-public class User {
+public class UserEntity {
     @Id
     private Integer id;
     @Column(name = "username")
@@ -14,9 +14,9 @@ public class User {
     private String password;
     @OneToOne
     @JoinColumn(name = "id_rol_user", insertable = false, updatable = false)
-    private Rol rol;
-    @OneToMany(mappedBy = "user")
-    private List<Item> items;
+    private RolEntity rol;
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
+    private List<ItemEntity> items;
 
     public Integer getId() {
         return id;
@@ -50,11 +50,11 @@ public class User {
         this.password = password;
     }
 
-    public Rol getRol() {
+    public RolEntity getRol() {
         return rol;
     }
 
-    public void setRol(Rol rol) {
+    public void setRol(RolEntity rol) {
         this.rol = rol;
     }
 }

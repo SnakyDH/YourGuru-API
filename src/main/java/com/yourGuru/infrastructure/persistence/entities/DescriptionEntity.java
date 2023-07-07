@@ -1,9 +1,9 @@
-package com.yourGuru.persistence.entities;
+package com.yourGuru.infrastructure.persistence.entities;
 
 import jakarta.persistence.*;
 
 @Entity
-public class Description {
+public class DescriptionEntity {
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
