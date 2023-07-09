@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class UserRepository implements User {
+public class UserRepositoryImpl implements User {
     //Como implementa el repositorio del dominio, los metodos sobre escritos deben retornar objetos del dominio no de la base de datos
     // usando los metodos del mapper transformo los objetos en sentido de DB repository a objetos de dominio
     @Autowired
