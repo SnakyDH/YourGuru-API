@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "user")
 public class UserEntity {
     @Id
     private Integer id;
@@ -12,7 +13,9 @@ public class UserEntity {
     private String userName;
     private String email;
     private String password;
-    @OneToOne
+    @Column(name = "id_user_rol")
+    private Integer idUserRol;
+    @ManyToOne
     @JoinColumn(name = "id_rol_user", insertable = false, updatable = false)
     private RolEntity rol;
     @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
@@ -50,11 +53,10 @@ public class UserEntity {
         this.password = password;
     }
 
-    public RolEntity getRol() {
-        return rol;
+    public Integer getIdUserRol() {
+        return idUserRol;
     }
-
-    public void setRol(RolEntity rol) {
-        this.rol = rol;
+    public void setIdUserRol(Integer idUserRol) {
+        this.idUserRol = idUserRol;
     }
 }

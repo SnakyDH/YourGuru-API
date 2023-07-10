@@ -3,8 +3,8 @@ package com.yourGuru.infrastructure.persistence.entities;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "description")
 public class DescriptionEntity {
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
     @Column(name = "description")

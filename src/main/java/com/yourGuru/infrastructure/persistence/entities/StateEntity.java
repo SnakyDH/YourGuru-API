@@ -5,13 +5,13 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "item_type")
-public class TypeEntity {
+@Table(name = "item_state")
+public class StateEntity {
     @Id
     private Integer id;
-    @Column(name = "type")
-    private String name;
-    @OneToMany(mappedBy = "type")
+    @Column(name = "state")
+    private String text;
+    @OneToMany(mappedBy = "state", cascade = {CascadeType.ALL})
     private List<ItemEntity> items;
     public Integer getId() {
         return id;
@@ -21,11 +21,11 @@ public class TypeEntity {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getText() {
+        return text;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setText(String text) {
+        this.text = text;
     }
 }

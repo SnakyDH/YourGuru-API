@@ -21,4 +21,3 @@ public class ItemGenreEntity {
         this.id = id;
     }
 }
-// realations -> @ManyToOne @JoinColumn
