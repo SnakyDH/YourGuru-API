@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.4" use-changelog="false" last-position="195,158" last-zoom="0.8" max-obj-count="9"
+<dbmodel pgmodeler-ver="0.9.4" use-changelog="false" last-position="44,65" last-zoom="1.05" max-obj-count="10"
 	 default-schema="public" default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -19,7 +19,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="user" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="680" y="820"/>
+	<position x="680" y="880"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="20"/>
 	</column>
@@ -35,21 +35,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<constraint name="user_pk" type="pk-constr" table="public.&quot;user&quot;">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
-
-	<customidxs object-type="column">
-		<object name="id_rol_user" index="4"/>
-	</customidxs>
-
-	<customidxs object-type="constraint">
-		<object name="rol_user_fk" index="1"/>
-		<object name="user_uq" index="2"/>
-	</customidxs>
 </table>
 
-<table name="item" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
+<table name="item" layers="0" collapse-mode="2" max-obj-count="10" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="680" y="420"/>
+	<position x="680" y="400"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -70,60 +61,71 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 
 	<customidxs object-type="column">
-		<object name="id_type_item" index="6"/>
+		<object name="id_description" index="6"/>
+		<object name="id_item_type" index="7"/>
 		<object name="id_user" index="5"/>
 	</customidxs>
 
 	<customidxs object-type="constraint">
-		<object name="type_item_fk" index="1"/>
+		<object name="description_fk" index="2"/>
+		<object name="item_type_fk" index="4"/>
+		<object name="item_uq" index="3"/>
 		<object name="user_fk" index="0"/>
 	</customidxs>
 </table>
 
-<table name="opinion" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+<table name="review" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="980" y="200"/>
+	<position x="1000" y="200"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
-	<column name="info" not-null="true">
-		<type name="varchar" length="150"/>
+	<column name="comment" not-null="true">
+		<type name="varchar" length="300"/>
 	</column>
 	<column name="rating" not-null="true">
 		<type name="smallint" length="0"/>
 	</column>
-	<constraint name="opinion_pk" type="pk-constr" table="public.opinion">
+	<constraint name="opinion_pk" type="pk-constr" table="public.review">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_item" index="3"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="item_fk" index="1"/>
+	</customidxs>
 </table>
 
-<table name="rol_user" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+<table name="user_rol" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1100" y="800"/>
+	<position x="1140" y="920"/>
 	<column name="id" not-null="true">
 		<type name="smallserial" length="0"/>
 	</column>
 	<column name="rol" not-null="true">
 		<type name="varchar" length="10"/>
 	</column>
-	<constraint name="type_user_pk" type="pk-constr" table="public.rol_user">
+	<constraint name="type_user_pk" type="pk-constr" table="public.user_rol">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<table name="type_item" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+<table name="item_type" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1100" y="500"/>
+	<position x="1100" y="460"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
 	<column name="type" not-null="true">
 		<type name="varchar" length="40"/>
 	</column>
-	<constraint name="type_item_pk" type="pk-constr" table="public.type_item">
+	<constraint name="type_item_pk" type="pk-constr" table="public.item_type">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -149,7 +151,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-fk-pattern="{st}_fk"
 	 custom-color="#97b0d4"
 	 src-table="public.item"
-	 dst-table="public.opinion"
+	 dst-table="public.review"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
 		<position x="30.4451" y="-37.8566"/>
@@ -165,7 +167,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="public.item"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
-		<position x="-13.6087" y="-18.7323"/>
+		<position x="5.94743" y="-21.9323"/>
 	</label>
 </relationship>
 
@@ -174,22 +176,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
 	 custom-color="#b2db3b"
-	 src-table="public.type_item"
+	 src-table="public.item_type"
 	 dst-table="public.item"
 	 src-required="false" dst-required="false"/>
-
-<relationship name="user_has_one_rol_user" type="rel11" layers="0"
-	 src-col-pattern="{sc}_{st}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 custom-color="#2bf420"
-	 src-table="public.rol_user"
-	 dst-table="public.&quot;user&quot;"
-	 src-required="false" dst-required="false">
-	<label ref-type="name-label">
-		<position x="2.86231" y="-29.1848"/>
-	</label>
-</relationship>
 
 <relationship name="item_has_one_description" type="rel11" layers="0"
 	 src-col-pattern="{sc}_{st}"
@@ -251,5 +240,42 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		</constraint>
 	<special-pk-cols indexes="0"/>
 </relationship>
+
+<table name="item_state" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1100" y="680"/>
+	<column name="id" not-null="true">
+		<type name="smallserial" length="0"/>
+	</column>
+	<column name="state" default-value="to do">
+		<type name="varchar" length="10"/>
+	</column>
+	<constraint name="item_state_pk" type="pk-constr" table="public.item_state">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="item_state_has_many_item" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#befcb5"
+	 src-table="public.item_state"
+	 dst-table="public.item"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="8.92207" y="-18.078"/>
+	</label>
+</relationship>
+
+<relationship name="user_rol_has_many_user" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#44bba3"
+	 src-table="public.user_rol"
+	 dst-table="public.&quot;user&quot;"
+	 src-required="false" dst-required="false"/>
 
 </dbmodel>
