@@ -34,18 +34,9 @@ public class UserRepositoryImpl implements UserRepository {
   }
 
   @Override
-  public List<User> getGamers() {
-    return null;
-  }
-
-  @Override
-  public List<User> getReaders() {
-    return null;
-  }
-
-  @Override
-  public List<User> getAudioVisuals() {
-    return null;
+  public List<User> getAllByRol(int rolID) {
+    Iterable<UserEntity> iteratorRepo = userCrudRepository.findAllByIdUserRol(rolID);
+    return StreamSupport.stream(iteratorRepo.spliterator(),false).map(user -> mapper.toUser(user)).toList();
   }
 
   @Override

@@ -7,9 +7,7 @@ import java.util.Optional;
 public interface UserRepository {
     Optional<User> getOne(int id);
     List<User> getAll();
-    List<User> getGamers();
-    List<User> getReaders();
-    List<User> getAudioVisuals();
+    List<User> getAllByRol(int rolID);
     User createOne(User user);
     boolean deleteOne(int id);
     User updateOne(User user);

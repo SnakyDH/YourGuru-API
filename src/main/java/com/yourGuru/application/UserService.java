@@ -1,5 +1,6 @@
 package com.yourGuru.application;
 
+import com.yourGuru.domain.emun.RolForUsers;
 import com.yourGuru.domain.interfaces.UserRepository;
 import com.yourGuru.domain.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class UserService {
     public List<User> getAll(){
         return userRepository.getAll();
     }
-    public void getGamers(){
-        // todo:
+    public List<User> getGamers(){
+        return userRepository.getAllByRol(RolForUsers.GAMER.getValue());
     }
     public void getReaders(){
         // todo:

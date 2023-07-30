@@ -27,13 +27,13 @@ public class UserController {
         Optional<User> user = userService.getOne(id);
         return  ResponseEntity.ok().body(user);
     }
-    /*
+
     @GetMapping("/gamers")
     public ResponseEntity<List<User>> getUsersGamers(){
-        userService.getGamers();
-        return ResponseEntity.ok().body();
+        List<User> gamers = userService.getGamers();
+        return ResponseEntity.ok().body(gamers);
     }
-    @GetMapping("/readers")
+    /*@GetMapping("/readers")
     public ResponseEntity<List<User>> getUsersReaders(){
         userService.getReaders();
     }
