@@ -28,13 +28,11 @@ public class ItemEntity {
     @ManyToOne
     @JoinColumn(name = "id_user", insertable = false, updatable = false)
     private UserEntity user;
-    // todo: verificar one to one relation
     @OneToOne
     private DescriptionEntity description;
     @ManyToOne
     @JoinColumn(name="id_item_type", insertable = false, updatable = false)
     private TypeEntity type;
-    // todo: stateEntity
     @ManyToOne
     @JoinColumn(name = "id_item_state",insertable = false, updatable = false)
     private StateEntity state;
