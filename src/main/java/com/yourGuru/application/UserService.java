@@ -29,11 +29,13 @@ public class UserService {
     public List<User> getGamers(){
         return userRepository.getAllByRol(RolForUsers.GAMER.getValue());
     }
-    public void getReaders(){
-        // todo:
+    public List<User> getReaders(){
+        return userRepository.getAllByRol(RolForUsers.READER.getValue());
+
     }
-    public void getAudioVisuals(){
-        // todo:
+    public List<User> getAudioVisuals(){
+        return userRepository.getAllByRol(RolForUsers.AUDIOVISUAL.getValue());
+
     }
     public User update(User user){
         return userRepository.updateOne(user);

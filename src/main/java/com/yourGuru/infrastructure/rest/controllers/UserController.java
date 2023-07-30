@@ -33,14 +33,17 @@ public class UserController {
         List<User> gamers = userService.getGamers();
         return ResponseEntity.ok().body(gamers);
     }
-    /*@GetMapping("/readers")
+    @GetMapping("/readers")
     public ResponseEntity<List<User>> getUsersReaders(){
-        userService.getReaders();
+        List<User> readers = userService.getReaders();
+        return ResponseEntity.ok().body(readers);
     }
     @GetMapping("/audiovisuals")
     public ResponseEntity<List<User>> getUsersAudioVisuals(){
-        userService.getAudioVisuals();
+        List<User> audioVisuals = userService.getAudioVisuals();
+        return ResponseEntity.ok().body(audioVisuals);
     }
+    /*
     @PostMapping("")
     public ResponseEntity<User> createUser(@RequestBody User user){
         userService.create(user);
