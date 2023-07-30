@@ -1,25 +1,65 @@
 package com.yourGuru.infrastructure.persistence.repository;
 
 import com.yourGuru.domain.interfaces.UserRepository;
+import com.yourGuru.domain.model.User;
+import com.yourGuru.infrastructure.persistence.entities.UserEntity;
 import com.yourGuru.infrastructure.persistence.mapper.UserMapper;
 import com.yourGuru.infrastructure.persistence.interfaces.UserCrudRepository;
-import com.yourGuru.infrastructure.persistence.entities.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 @Repository
-public class UserRepositoryImpl implements User {
-    //Como implementa el repositorio del dominio, los metodos sobre escritos deben retornar objetos del dominio no de la base de datos
-    // usando los metodos del mapper transformo los objetos en sentido de DB repository a objetos de dominio
-    @Autowired
-    private UserCrudRepository userCrudRepository;
-    @Autowired
-    private UserMapper mapper;
-    public List<UserEntity> getAll(){ // used by service
-        return (List<UserEntity>) userCrudRepository.findAll();
-        // Query methods here the implementation and in interface that query -> userCrudRepository.findByIdCategoria();
-    }
-    // Good idea use Optional Class for a return or type of the method
+public class UserRepositoryImpl implements UserRepository {
+  @Autowired
+  private UserCrudRepository userCrudRepository;
+  @Autowired
+  private UserMapper mapper;
+
+  @Override
+  public Optional<User> getOne(int id) {
+    return userCrudRepository.findById(id).map(user -> mapper.toUser(user));
+  }
+
+  @Override
+  public List<User> getAll() {
+    Iterable<UserEntity> iteratorRepo = userCrudRepository.findAll();
+    return StreamSupport.stream(iteratorRepo.spliterator(),false).map(user -> mapper.toUser(user)).toList();
+  }
+
+  @Override
+  public List<User> getGamers() {
+    return null;
+  }
+
+  @Override
+  public List<User> getReaders() {
+    return null;
+  }
+
+  @Override
+  public List<User> getAudioVisuals() {
+    return null;
+  }
+
+  @Override
+  public User createOne(User user) {
+    return null;
+  }
+
+  @Override
+  public boolean deleteOne(int id) {
+    return false;
+  }
+
+  @Override
+  public User updateOne(User user) {
+    return null;
+  }
 }
