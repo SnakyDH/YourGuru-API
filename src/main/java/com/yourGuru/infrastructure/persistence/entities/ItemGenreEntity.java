@@ -20,4 +20,20 @@ public class ItemGenreEntity {
     public void setId(ItemGenrePK id) {
         this.id = id;
     }
+
+    public ItemEntity getItem() {
+        return item;
+    }
+
+    public void setItem(ItemEntity item) {
+        this.item = item;
+    }
+
+    public GenreEntity getGenre() {
+        return genre;
+    }
+
+    public void setGenre(GenreEntity genre) {
+        this.genre = genre;
+    }
 }

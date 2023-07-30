@@ -28,4 +28,12 @@ public class StateEntity {
     public void setText(String text) {
         this.text = text;
     }
+
+    public List<ItemEntity> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemEntity> items) {
+        this.items = items;
+    }
 }

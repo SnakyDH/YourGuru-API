@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class UserEntity {
     @Id
     private Integer id;
@@ -16,7 +16,7 @@ public class UserEntity {
     @Column(name = "id_user_rol")
     private Integer idUserRol;
     @ManyToOne
-    @JoinColumn(name = "id_rol_user", insertable = false, updatable = false)
+    @JoinColumn(name = "id_user_rol", insertable = false, updatable = false)
     private RolEntity rol;
     @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
     private List<ItemEntity> items;
@@ -58,5 +58,21 @@ public class UserEntity {
     }
     public void setIdUserRol(Integer idUserRol) {
         this.idUserRol = idUserRol;
+    }
+
+    public RolEntity getRol() {
+        return rol;
+    }
+
+    public void setRol(RolEntity rol) {
+        this.rol = rol;
+    }
+
+    public List<ItemEntity> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemEntity> items) {
+        this.items = items;
     }
 }

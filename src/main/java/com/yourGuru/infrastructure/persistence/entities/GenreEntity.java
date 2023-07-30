@@ -13,7 +13,7 @@ public class GenreEntity {
     @Id
     private Integer id;
     private String name;
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "genre")
     private List<ItemGenreEntity> items;
     public Integer getId() {
         return id;
@@ -26,5 +26,13 @@ public class GenreEntity {
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<ItemGenreEntity> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemGenreEntity> items) {
+        this.items = items;
     }
 }

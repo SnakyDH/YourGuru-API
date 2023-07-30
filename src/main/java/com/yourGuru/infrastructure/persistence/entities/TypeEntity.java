@@ -28,4 +28,12 @@ public class TypeEntity {
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<ItemEntity> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemEntity> items) {
+        this.items = items;
+    }
 }

@@ -27,4 +27,12 @@ public class RolEntity {
     public void setRol(String rol) {
         this.rol = rol;
     }
+
+    public List<UserEntity> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<UserEntity> users) {
+        this.users = users;
+    }
 }
